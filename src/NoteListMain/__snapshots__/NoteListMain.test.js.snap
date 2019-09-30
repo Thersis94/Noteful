@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoteListMain component renders a .NoteListMain by default 1`] = `
+<section
+  className="NoteListMain"
+>
+  <ul
+    id="note__list"
+  />
+  <div
+    className="NoteListMain__button-container"
+  >
+    <NavCircleButton
+      className="NoteListMain__add-note-button"
+      tag={[Function]}
+      to="/add-note"
+      type="butto"
+    >
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon="plus"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+      <br />
+      Note
+    </NavCircleButton>
+  </div>
+</section>
+`;
+
+exports[`NoteListMain component renders a Note in ul for each notes in array 1`] = `
+<ul
+  id="note__list"
+/>
+`;
