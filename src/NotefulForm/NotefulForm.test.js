@@ -10,11 +10,6 @@ describe(`NotefulForm component`, () => {
     'data-other': 'test-other-prop'
   }
 
-  it('renders a form.NotefulForm by default', () => {
-    const wrapper = shallow(<NotefulForm />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
-
   it('renders the NotefulForm given props', () => {
     const wrapper = shallow(<NotefulForm {...props} />)
     expect(toJson(wrapper)).toMatchSnapshot()
