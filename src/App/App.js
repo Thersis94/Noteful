@@ -43,7 +43,9 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    ["folders", "notes"].map(endPoint =>
+    Promise
+    .all(["folders", "notes"])
+    .then(endPoint =>
       fetch(`${API}/${endPoint}`, {
         method: "GET",
         headers: {
