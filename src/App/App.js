@@ -43,42 +43,35 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    Promise
-    .all(["folders", "notes"])
-    .then(endPoint =>
-      fetch(`${API}/${endPoint}`, {
-        method: "GET",
-        headers: {
-          "content-type": "application/json"
-        }
-      })
-        .then(res => {
-          if (!res.ok) {
-            return res.json().then(error => {
-              console.log(`Error: ${error}`);
+    Promise.all([
+      fetch(`${API}/notes`), 
+      fetch(`${API}/folders`)
+    ])
+      .then(([notesRes, foldersRes]) => {
+        // get the folder and note response
+        if (!notesRes.ok) return notesRes.json().then(e => Promise.reject(e)); // if note response has a problem throw and error
+        if (!foldersRes.ok)
+          return foldersRes.json().then(e => Promise.reject(e)); // if folder response has a problem throw an error
 
-              throw error;
-            });
-          }
-          return res.json();
+        return Promise.all([
+          // if everything works right...
+          notesRes.json(), // ...note response gets passed to next .then()
+          foldersRes.json() // ...folder response gets passed to next .then()
+        ]);
+      })
+      .then(([notes, folders]) => {
+        folders.map(folder => {
+          return this.handleAddFolder(folder);
         })
-        .then(data => {
-          if (endPoint === "notes") {
-            data.map(note => {
-              return this.handleAddNote(note);
-            });
-          } else {
-            data.map(folder => {
-              return this.handleAddFolder(folder);
-            });
-          }
-        })
-        .catch(error => {
-          this.setState({
-            error: `error for ${endPoint}: ${error}`
-          });
-        })
-    );
+        notes.map(note => {
+          return this.handleAddNote(note);
+        });
+        // this is the actual folder and note data
+        //deal with folder and note data here. Log it for starters
+      })
+      .catch(error => {
+        console.error({ error });
+      });
   }
 
   handleDeleteNote = noteId => {
