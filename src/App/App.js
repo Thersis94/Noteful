@@ -43,31 +43,21 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    Promise.all([
-      fetch(`${API}/notes`), 
-      fetch(`${API}/folders`)
-    ])
+    Promise.all([fetch(`${API}/notes`), fetch(`${API}/folders`)])
       .then(([notesRes, foldersRes]) => {
-        // get the folder and note response
-        if (!notesRes.ok) return notesRes.json().then(e => Promise.reject(e)); // if note response has a problem throw and error
+        if (!notesRes.ok) return notesRes.json().then(e => Promise.reject(e));
         if (!foldersRes.ok)
-          return foldersRes.json().then(e => Promise.reject(e)); // if folder response has a problem throw an error
+          return foldersRes.json().then(e => Promise.reject(e));
 
-        return Promise.all([
-          // if everything works right...
-          notesRes.json(), // ...note response gets passed to next .then()
-          foldersRes.json() // ...folder response gets passed to next .then()
-        ]);
+        return Promise.all([notesRes.json(), foldersRes.json()]);
       })
       .then(([notes, folders]) => {
         folders.map(folder => {
           return this.handleAddFolder(folder);
-        })
+        });
         notes.map(note => {
           return this.handleAddNote(note);
         });
-        // this is the actual folder and note data
-        //deal with folder and note data here. Log it for starters
       })
       .catch(error => {
         console.error({ error });
