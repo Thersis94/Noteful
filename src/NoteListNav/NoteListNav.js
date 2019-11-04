@@ -6,14 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import NotefulContext from '../NotefulContext'
 import CircleButton from '../CircleButton/CircleButton'
-import { countNotesForFolder } from '../notes-helpers'
 
 export default class NoteListNav extends Component {
   static contextType = NotefulContext;
 
 
   render() {
-    const { folders=[], notes=[] } = this.context
+    const { folders=[] } = this.context
 
     return (
       <div className='NoteListNav'>
@@ -25,10 +24,7 @@ export default class NoteListNav extends Component {
                 className='NoteListNav__folder-link'
                 to={`/folder/${folder.id}`}
               >
-                <span className='NoteListNav__num-notes'>
-                  {countNotesForFolder(notes, folder.id)}
-                </span>
-                {folder.folder_name}
+                {folder.name}
               </NavLink>
             </li>
           )}

@@ -67,7 +67,7 @@ export default class AddFolder extends React.Component {
         e.preventDefault();
         const { title } = this.state;
         const folder = {
-            folder_name: title
+            name: title
         }
 
         this.setState({error: null})
