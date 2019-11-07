@@ -85,7 +85,7 @@ export default class AddNote extends React.Component {
         const note = {
             name: title,
             content: content,
-            folderId: folderId,
+            folderid: folderId,
             modified: new Date()
         }
 

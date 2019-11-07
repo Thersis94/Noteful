@@ -9,7 +9,7 @@ import AddFolder from "../AddFolder";
 import AddNote from "../AddNote";
 import ErrorBoundary from "../ErrorHandlers/ErrorBoundary";
 import "./App.css";
-const API = "http://localhost:9090";
+const API = "http://localhost:8000/api";
 
 class App extends React.Component {
   constructor(props) {
