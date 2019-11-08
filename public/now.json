@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "alias": "josh-noteful-client",
-  "name": "noteful-client",
+  "alias": "Noteful",
+  "name": "Noteful",
   "routes": [
       {
         "src": "^/static/(.*)",
